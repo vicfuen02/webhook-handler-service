@@ -1,4 +1,4 @@
-package es.vicfuen02.webhookHandler.requestHandler_service;
+package es.vicfuen02.webhookHandler.requestHandlerService;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

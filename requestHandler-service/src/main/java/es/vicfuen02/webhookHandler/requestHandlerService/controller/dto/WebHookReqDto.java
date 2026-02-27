@@ -1,4 +1,4 @@
-package es.vicfuen02.webhookHandler.requestHandler_service.controller.dto;
+package es.vicfuen02.webhookHandler.requestHandlerService.controller.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

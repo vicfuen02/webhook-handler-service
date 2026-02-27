@@ -1,0 +1,72 @@
+services:
+
+
+  db-mysql:
+    image: mysql:8.4
+    container_name: webhook-handler-db-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: admin
+      MYSQL_USER: user
+      MYSQL_PASSWORD: pass
+      MYSQL_DATABASE: webhookHandlerDB
+    ports:
+      - "3306:3306"
+    volumes:
+      - db-mysql-vol:/var/lib/mysql/data
+    networks:
+      - webhook-handler-network
+
+
+  zookeeper:
+    image: confluentinc/cp-zookeeper:7.2.6
+    container_name: webhook-handler-kafka-zookeeper
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
+    ports:
+      - 2181:2181
+    networks:
+      - webhook-handler-network
+
+  kafka1:
+    image: confluentinc/cp-kafka:7.2.6
+    container_name: webhook-handler-kafka-kafka1
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ADVERTISED_HOST_NAME: webhook-handler-kafka-kafka1
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://webhook-handler-kafka-kafka1:9092
+      KAFKA_ZOOKEEPER_CONNECT: webhook-handler-kafka-zookeeper:2181
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+    ports:
+      - 9092:9092
+    depends_on:
+      - zookeeper
+    networks:
+      - webhook-handler-network
+
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: webhook-handler-backend
+    environment:
+      ACTIVE_PROFILE: default
+      MYSQL_USER: user
+      MYSQL_PASSWORD: pass
+      MYSQL_URL: jdbc:mysql://db-mysql:3306/webhookHandlerDB
+      KAFKA_CONFIG_BOOTSTRAP_SERVERS: webhook-handler-kafka-kafka1:9092
+
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db-mysql
+      - kafka1
+    networks:
+      - webhook-handler-network
+
+volumes:
+  db-mysql-vol:
+
+networks:
+  webhook-handler-network:
+    driver: bridge

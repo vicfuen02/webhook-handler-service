@@ -1,8 +1,8 @@
-package es.vicfuen02.webhookHandler.requestHandler_service.controller;
+package es.vicfuen02.webhookHandler.requestHandlerService.controller;
 
-import es.vicfuen02.webhookHandler.requestHandler_service.controller.dto.WebHookReqDto;
-import es.vicfuen02.webhookHandler.requestHandler_service.mapper.WebHookRestControllerMapper;
-import es.vicfuen02.webhookHandler.requestHandler_service.service.WebHookService;
+import es.vicfuen02.webhookHandler.requestHandlerService.controller.dto.WebHookReqDto;
+import es.vicfuen02.webhookHandler.requestHandlerService.mapper.WebHookRestControllerMapper;
+import es.vicfuen02.webhookHandler.requestHandlerService.service.WebHookService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.PostMapping;
