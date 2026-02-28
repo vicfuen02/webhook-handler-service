@@ -1,0 +1,44 @@
+{
+	"info": {
+		"_postman_id": "4f57a464-ffb8-475b-ab36-617899a7e441",
+		"name": "WebHook Handler",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "42754225"
+	},
+	"item": [
+		{
+			"name": "WebHook",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-WebHook-signature",
+						"value": "1234",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"eventId\": \"1\",\r\n     \"topic\": \"webhook.topic\",\r\n     \"payload\": \"{}\",\r\n     \"receivedAt\": null\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{protocol}}://{{host}}:{{port}}/webhook",
+					"protocol": "{{protocol}}",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"webhook"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
