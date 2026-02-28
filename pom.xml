@@ -34,13 +34,15 @@
 
 	<properties>
 		<java.version>25</java.version>
-		<spring-cloud.version>2025.1.0</spring-cloud.version>
+		<spring-cloud.version>2025.1.1</spring-cloud.version>
 		<mapstruct.version>1.6.3</mapstruct.version>
+<!--		<lombok.version>1.18.42</lombok.version>-->
 	</properties>
 
 	<modules>
 		<module>requestHandler-service</module>
 		<module>consumer-service</module>
+		<module>common-service</module>
 	</modules>
 
 	<dependencies>
@@ -76,7 +78,8 @@
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
-			<version>1.18.42</version>
+			<optional>true</optional>
+<!--			<version>${lombok.version}</version>-->
 		</dependency>
 		<dependency>
 			<groupId>org.mapstruct</groupId>
@@ -101,27 +104,15 @@
 		<plugins>
 
 			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-				<configuration>
-					<excludes>
-						<exclude>
-							<groupId>org.projectlombok</groupId>
-							<artifactId>lombok</artifactId>
-						</exclude>
-					</excludes>
-				</configuration>
-			</plugin>
-
-			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.11.0</version>
+<!--				<version>3.11.0</version>-->
 				<configuration>
 					<annotationProcessorPaths>
 						<path>
 							<groupId>org.projectlombok</groupId>
 							<artifactId>lombok</artifactId>
+<!--							<version>${lombok.version}</version>-->
 						</path>
 						<path>
 							<groupId>org.projectlombok</groupId>
@@ -134,6 +125,19 @@
 							<version>${mapstruct.version}</version>
 						</path>
 					</annotationProcessorPaths>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<excludes>
+						<exclude>
+							<groupId>org.projectlombok</groupId>
+							<artifactId>lombok</artifactId>
+						</exclude>
+					</excludes>
 				</configuration>
 			</plugin>
 
