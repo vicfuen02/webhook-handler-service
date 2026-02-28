@@ -1,7 +1,6 @@
-package es.vicfuen02.webhookHandler.requestHandler.service.impl;
+package es.vicfuen02.webhookHandler.requestHandler.kafka.service;
 
-import es.vicfuen02.webhookHandler.common.model.BaseEvent;
-import es.vicfuen02.webhookHandler.requestHandler.service.KafkaMessagePublisher;
+import es.vicfuen02.webhookHandler.common.kafka.model.BaseEvent;
 import jakarta.annotation.PreDestroy;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

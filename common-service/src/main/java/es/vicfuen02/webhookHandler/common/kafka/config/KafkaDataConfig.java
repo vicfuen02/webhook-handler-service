@@ -1,4 +1,4 @@
-package es.vicfuen02.webhookHandler.common.config;
+package es.vicfuen02.webhookHandler.common.kafka.config;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;

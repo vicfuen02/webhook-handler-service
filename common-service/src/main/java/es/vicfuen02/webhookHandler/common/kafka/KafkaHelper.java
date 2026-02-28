@@ -1,4 +1,4 @@
-package es.vicfuen02.webhookHandler.common;
+package es.vicfuen02.webhookHandler.common.kafka;
 
 
 import lombok.extern.slf4j.Slf4j;

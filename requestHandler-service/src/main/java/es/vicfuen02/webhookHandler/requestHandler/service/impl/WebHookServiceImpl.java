@@ -1,6 +1,6 @@
 package es.vicfuen02.webhookHandler.requestHandler.service.impl;
 
-import es.vicfuen02.webhookHandler.requestHandler.service.KafkaMessagePublisher;
+import es.vicfuen02.webhookHandler.requestHandler.kafka.service.KafkaMessagePublisher;
 import es.vicfuen02.webhookHandler.requestHandler.service.WebHookService;
 import es.vicfuen02.webhookHandler.requestHandler.service.model.WebHookEvent;
 import es.vicfuen02.webhookHandler.requestHandler.service.model.WebHookModel;

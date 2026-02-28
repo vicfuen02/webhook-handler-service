@@ -1,7 +1,7 @@
-package es.vicfuen02.webhookHandler.requestHandler.config;
+package es.vicfuen02.webhookHandler.requestHandler.kafka.config;
 
-import es.vicfuen02.webhookHandler.common.config.KafkaDataConfig;
-import es.vicfuen02.webhookHandler.common.model.BaseEvent;
+import es.vicfuen02.webhookHandler.common.kafka.config.KafkaDataConfig;
+import es.vicfuen02.webhookHandler.common.kafka.model.BaseEvent;
 import lombok.AllArgsConstructor;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.springframework.context.annotation.Bean;

@@ -1,7 +1,7 @@
 package es.vicfuen02.webhookHandler.requestHandler.service.model;
 
 
-import es.vicfuen02.webhookHandler.common.model.BaseEvent;
+import es.vicfuen02.webhookHandler.common.kafka.model.BaseEvent;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 

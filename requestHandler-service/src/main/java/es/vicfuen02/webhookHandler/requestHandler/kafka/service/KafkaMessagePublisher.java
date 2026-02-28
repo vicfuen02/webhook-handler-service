@@ -1,6 +1,6 @@
-package es.vicfuen02.webhookHandler.requestHandler.service;
+package es.vicfuen02.webhookHandler.requestHandler.kafka.service;
 
-import es.vicfuen02.webhookHandler.common.model.BaseEvent;
+import es.vicfuen02.webhookHandler.common.kafka.model.BaseEvent;
 
 import java.io.Serializable;
 

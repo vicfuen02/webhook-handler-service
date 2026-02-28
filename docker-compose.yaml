@@ -44,25 +44,24 @@ services:
     networks:
       - webhook-handler-network
 
-  backend:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    container_name: webhook-handler-backend
-    environment:
-      ACTIVE_PROFILE: default
-      MYSQL_USER: user
-      MYSQL_PASSWORD: pass
-      MYSQL_URL: jdbc:mysql://db-mysql:3306/webhookHandlerDB
-      KAFKA_CONFIG_BOOTSTRAP_SERVERS: webhook-handler-kafka-kafka1:9092
-
-    ports:
-      - "8080:8080"
-    depends_on:
-      - db-mysql
-      - kafka1
-    networks:
-      - webhook-handler-network
+#  backend:
+#    build:
+#      context: .
+#      dockerfile: Dockerfile
+#    container_name: webhook-handler-backend
+#    environment:
+#      ACTIVE_PROFILE: default
+#      MYSQL_USER: user
+#      MYSQL_PASSWORD: pass
+#      MYSQL_URL: jdbc:mysql://db-mysql:3306/webhookHandlerDB
+#      KAFKA_CONFIG_BOOTSTRAP_SERVERS: webhook-handler-kafka-kafka1:9092
+#    ports:
+#      - "8080:8080"
+#    depends_on:
+#      - db-mysql
+#      - kafka1
+#    networks:
+#      - webhook-handler-network
 
 volumes:
   db-mysql-vol:

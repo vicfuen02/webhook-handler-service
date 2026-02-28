@@ -1,4 +1,4 @@
-package es.vicfuen02.webhookHandler.consumer.model;
+package es.vicfuen02.webhookHandler.common.kafka.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
