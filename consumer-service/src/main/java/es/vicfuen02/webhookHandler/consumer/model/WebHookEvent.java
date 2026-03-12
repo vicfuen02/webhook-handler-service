@@ -1,6 +1,7 @@
 package es.vicfuen02.webhookHandler.consumer.model;
 
 
+import es.vicfuen02.webhookHandler.common.kafka.model.BaseEvent;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;

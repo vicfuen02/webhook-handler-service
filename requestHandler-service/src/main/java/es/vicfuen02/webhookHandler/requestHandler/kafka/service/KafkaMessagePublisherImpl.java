@@ -40,7 +40,7 @@ public class KafkaMessagePublisherImpl<K extends Serializable, V extends BaseEve
     }
 
     @PreDestroy
-    public void close(){
+    public void close() {
         if(kafkaTemplate != null){
             log.info("Closing kafka producer");
             kafkaTemplate.destroy();
