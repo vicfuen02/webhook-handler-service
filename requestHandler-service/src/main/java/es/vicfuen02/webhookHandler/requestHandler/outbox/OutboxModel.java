@@ -1,4 +1,4 @@
-package es.vicfuen02.webhookHandler.requestHandler.service.model;
+package es.vicfuen02.webhookHandler.requestHandler.outbox;
 
 
 import lombok.AllArgsConstructor;
@@ -15,8 +15,9 @@ public class OutboxModel {
 
 
     private Long id;
-    private Long webHookId;
+    private Long eventId;
     private String payload;
+    private OutboxEventEnum status;
 
 
 

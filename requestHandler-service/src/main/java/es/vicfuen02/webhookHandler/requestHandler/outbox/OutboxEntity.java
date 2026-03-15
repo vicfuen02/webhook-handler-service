@@ -1,4 +1,4 @@
-package es.vicfuen02.webhookHandler.requestHandler.repository.entity;
+package es.vicfuen02.webhookHandler.requestHandler.outbox;
 
 
 import jakarta.persistence.*;
@@ -16,13 +16,17 @@ import lombok.NoArgsConstructor;
 public class OutboxEntity {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy= GenerationType.SEQUENCE, generator="seq_outbox_id_gen")
+    @SequenceGenerator(name="seq_outbox_id_gen", sequenceName="SEQ_OUTBOX_ID", initialValue = 1000, allocationSize = 2)
     private Long id;
 
-    private Long webHookId;
+    private Long eventId;
 
     @Column(unique = false, nullable = false, columnDefinition = "JSON")
     private String payload;
+
+    @Enumerated(value = EnumType.STRING)
+    private OutboxEventEnum status;
 
 
 

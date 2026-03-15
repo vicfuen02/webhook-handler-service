@@ -1,9 +1,13 @@
-package es.vicfuen02.webhookHandler.requestHandler.repository;
+package es.vicfuen02.webhookHandler.requestHandler.outbox;
 
-import es.vicfuen02.webhookHandler.requestHandler.repository.entity.OutboxEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface OutboxJpaRepository extends JpaRepository<OutboxEntity, Long> {
+
+    List<OutboxEntity> findByStatus(OutboxEventEnum status);
+
 }
