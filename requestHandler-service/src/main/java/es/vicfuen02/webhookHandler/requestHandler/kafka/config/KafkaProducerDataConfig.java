@@ -13,5 +13,9 @@ public class KafkaProducerDataConfig {
     private String keySerializer;
     private String valueSerializer;
 
+    private Boolean idempotency;
+    private String acksConfig;
+    private String maxInFlightReqPerConnection;
+
 
 }

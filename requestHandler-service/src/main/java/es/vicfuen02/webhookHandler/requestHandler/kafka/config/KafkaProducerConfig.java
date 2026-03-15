@@ -31,6 +31,11 @@ public class KafkaProducerConfig<K extends Serializable, V extends BaseEvent> {
         properties.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG,      kafkaProducerDataConfig.getKeySerializer());
         properties.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG,    kafkaProducerDataConfig.getValueSerializer());
 
+        properties.put(ProducerConfig.ENABLE_IDEMPOTENCE_CONFIG,        kafkaProducerDataConfig.getIdempotency());
+        properties.put(ProducerConfig.ACKS_CONFIG,                      kafkaProducerDataConfig.getAcksConfig());
+        properties.put(ProducerConfig.RETRIES_CONFIG,                   Integer.MAX_VALUE);
+        properties.put(ProducerConfig.MAX_IN_FLIGHT_REQUESTS_PER_CONNECTION,        kafkaProducerDataConfig.getMaxInFlightReqPerConnection());
+
         return properties;
     }
 
