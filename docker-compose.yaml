@@ -34,7 +34,8 @@ services:
     environment:
       KAFKA_BROKER_ID: 1
       KAFKA_ADVERTISED_HOST_NAME: webhook-handler-kafka-kafka1
-      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://webhook-handler-kafka-kafka1:9092
+#      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://webhook-handler-kafka-kafka1:9092
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9092
       KAFKA_ZOOKEEPER_CONNECT: webhook-handler-kafka-zookeeper:2181
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
     ports:

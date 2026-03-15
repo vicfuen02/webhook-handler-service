@@ -1,7 +1,7 @@
 package es.vicfuen02.webhookHandler.consumer.kafka.service;
 
 
-import es.vicfuen02.webhookHandler.consumer.model.WebHookEvent;
+import es.vicfuen02.webhookHandler.common.model.WebHookEvent;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.kafka.annotation.BackOff;
@@ -19,12 +19,12 @@ public class KafkaMessageConsumerImpl {
 
 
 
-    @RetryableTopic(attempts = "4", backOff = @BackOff(delay = 1000L, multiplier = 2))
+    @RetryableTopic(attempts = "2", backOff = @BackOff(delay = 1000L, multiplier = 2))
     @KafkaListener(topics="webhook-topic", groupId="webhook-group-1")
     public void consumeMessage(WebHookEvent event,
-            @Header(KafkaHeaders.RECEIVED_TOPIC) String topic) {
+                               @Header(KafkaHeaders.RECEIVED_TOPIC) String topic) {
 
-        log.info("Received message from topic '{}'", topic);
+        log.info("Received message from topic '{}', event '{}'", topic, event);
 
 
     }

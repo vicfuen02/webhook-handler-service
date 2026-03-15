@@ -10,6 +10,8 @@ import org.springframework.kafka.config.ConcurrentKafkaListenerContainerFactory;
 import org.springframework.kafka.config.KafkaListenerContainerFactory;
 import org.springframework.kafka.core.*;
 import org.springframework.kafka.listener.ConcurrentMessageListenerContainer;
+import org.springframework.kafka.support.serializer.JacksonJsonDeserializer;
+import org.springframework.kafka.support.serializer.JsonDeserializer;
 
 import java.io.Serializable;
 import java.util.HashMap;
@@ -32,7 +34,7 @@ public class KafkaConsumerConfig<K extends Serializable, V extends BaseEvent> {
         properties.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG,        kafkaConsumerDataConfig.getKeyDeserializer());
         properties.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG,      kafkaConsumerDataConfig.getValueDeserializer());
         properties.put(ConsumerConfig.GROUP_ID_CONFIG ,                     kafkaConsumerDataConfig.getGroupId());
-//        properties.put(JsonDeserializer.TRUSTED_PACKAGES,                   kafkaConsumerDataConfig.getTrustedPackages());
+        properties.put(JacksonJsonDeserializer.TRUSTED_PACKAGES,            kafkaConsumerDataConfig.getTrustedPackages());
 
         return properties;
     }

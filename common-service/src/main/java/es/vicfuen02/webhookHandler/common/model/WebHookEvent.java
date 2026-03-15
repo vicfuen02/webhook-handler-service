@@ -1,17 +1,15 @@
-package es.vicfuen02.webhookHandler.consumer.model;
+package es.vicfuen02.webhookHandler.common.model;
 
 
 import es.vicfuen02.webhookHandler.common.kafka.model.BaseEvent;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import lombok.experimental.SuperBuilder;
 
 import java.util.Date;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
+@ToString(callSuper = true)
 @SuperBuilder(toBuilder = true)
 @AllArgsConstructor
 @NoArgsConstructor

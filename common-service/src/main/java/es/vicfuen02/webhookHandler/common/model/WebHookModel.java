@@ -1,4 +1,4 @@
-package es.vicfuen02.webhookHandler.requestHandler.service.model;
+package es.vicfuen02.webhookHandler.common.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
