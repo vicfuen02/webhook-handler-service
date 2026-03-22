@@ -4,15 +4,17 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
+import org.springframework.boot.persistence.autoconfigure.EntityScan;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.event.EventListener;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
-@SpringBootApplication
+
+@ComponentScan(basePackages = "es.vicfuen02.webhookHandler")
+@SpringBootApplication(scanBasePackages = "es.vicfuen02.webhookHandler")
+@EnableJpaRepositories(basePackages = "es.vicfuen02.webhookHandler")
+@EntityScan(basePackages = "es.vicfuen02.webhookHandler")
 @Slf4j
-@ComponentScan(basePackages = {
-		"es.vicfuen02.webhookHandler.consumer",
-		"es.vicfuen02.webhookHandler.common"
-})
 public class ConsumerServiceApplication {
 
 	public static void main(String[] args) {

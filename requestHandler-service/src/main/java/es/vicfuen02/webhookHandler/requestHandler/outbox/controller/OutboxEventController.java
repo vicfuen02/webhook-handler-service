@@ -1,5 +1,7 @@
-package es.vicfuen02.webhookHandler.requestHandler.outbox;
+package es.vicfuen02.webhookHandler.requestHandler.outbox.controller;
 
+import es.vicfuen02.webhookHandler.requestHandler.outbox.service.OutboxEventHelperImpl;
+import es.vicfuen02.webhookHandler.requestHandler.outbox.service.OutboxModel;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;

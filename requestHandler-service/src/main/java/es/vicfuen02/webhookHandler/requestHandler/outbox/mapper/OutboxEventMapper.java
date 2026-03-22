@@ -1,5 +1,7 @@
-package es.vicfuen02.webhookHandler.requestHandler.outbox;
+package es.vicfuen02.webhookHandler.requestHandler.outbox.mapper;
 
+import es.vicfuen02.webhookHandler.requestHandler.outbox.repository.OutboxEntity;
+import es.vicfuen02.webhookHandler.requestHandler.outbox.service.OutboxModel;
 import org.mapstruct.Mapper;
 
 import java.util.List;

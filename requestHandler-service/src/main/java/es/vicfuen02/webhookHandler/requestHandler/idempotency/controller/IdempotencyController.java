@@ -1,7 +1,7 @@
-package es.vicfuen02.webhookHandler.requestHandler.idempotency;
+package es.vicfuen02.webhookHandler.requestHandler.idempotency.controller;
 
-import es.vicfuen02.webhookHandler.requestHandler.outbox.OutboxEventHelperImpl;
-import es.vicfuen02.webhookHandler.requestHandler.outbox.OutboxModel;
+import es.vicfuen02.webhookHandler.common.idempotency.service.IdempotencyHelperImpl;
+import es.vicfuen02.webhookHandler.common.idempotency.service.IdempotencyModel;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;

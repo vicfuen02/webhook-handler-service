@@ -19,21 +19,17 @@ import org.springframework.stereotype.Component;
 @AllArgsConstructor
 public class KafkaMessageConsumerImpl {
 
-
+    private final KafkaMessageListener<WebHookEvent> kafkaMessageListener;
 
     @RetryableTopic(attempts = "2", backOff = @BackOff(delay = 1000L, multiplier = 2))
     @KafkaListener(topics="webhook-topic", groupId="webhook-group-1")
-    public void consumeMessage(ConsumerRecord<String, String> record,
+    public void consumeMessage(ConsumerRecord<String, WebHookEvent> record,
                                Acknowledgment acknowledgment) {
 
         log.info("Received event message '{}',", record);
-
         try {
 
-            Thread.sleep(5000L);
-
-
-
+            kafkaMessageListener.acceptEvent(record.value());
             acknowledgment.acknowledge();
 
         } catch (Exception e) {
@@ -43,9 +39,11 @@ public class KafkaMessageConsumerImpl {
         log.info("END Received event message '{}',", record);
     }
 
+
+
     @DltHandler
     public void consumeEventDLT(WebHookEvent event
-            ,@Header(KafkaHeaders.RECEIVED_TOPIC) String topic
+            , @Header(KafkaHeaders.RECEIVED_TOPIC) String topic
     ) {
         log.info("DLT!!! KafkaMessageConsumerImpl.consumeEventDLT" +
                 " topic: ({}), event: ({})", topic, event);

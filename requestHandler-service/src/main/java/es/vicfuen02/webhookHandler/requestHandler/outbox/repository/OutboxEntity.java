@@ -1,6 +1,7 @@
-package es.vicfuen02.webhookHandler.requestHandler.outbox;
+package es.vicfuen02.webhookHandler.requestHandler.outbox.repository;
 
 
+import es.vicfuen02.webhookHandler.requestHandler.outbox.service.OutboxEventEnum;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -20,7 +21,8 @@ public class OutboxEntity {
     @SequenceGenerator(name="seq_outbox_id_gen", sequenceName="SEQ_OUTBOX_ID", initialValue = 1000, allocationSize = 2)
     private Long id;
 
-    private Long eventId;
+    @Column(unique = true, nullable = false)
+    private String outboxId;
 
     @Column(unique = false, nullable = false, columnDefinition = "JSON")
     private String payload;

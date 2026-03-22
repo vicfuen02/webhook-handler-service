@@ -4,17 +4,19 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
+import org.springframework.boot.persistence.autoconfigure.EntityScan;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.event.EventListener;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
-@SpringBootApplication
+
+@ComponentScan(basePackages = "es.vicfuen02.webhookHandler")
+@SpringBootApplication(scanBasePackages = "es.vicfuen02.webhookHandler")
+@EnableJpaRepositories(basePackages = "es.vicfuen02.webhookHandler")
+@EntityScan(basePackages = "es.vicfuen02.webhookHandler")
+@EnableScheduling
 @Slf4j
-@ComponentScan(basePackages = {
-		"es.vicfuen02.webhookHandler.requestHandler",
-		"es.vicfuen02.webhookHandler.common"
-})
-@EnableJpaRepositories
 public class RequestHandlerServiceApplication {
 
 	public static void main(String[] args) {

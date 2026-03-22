@@ -1,4 +1,4 @@
-package es.vicfuen02.webhookHandler.requestHandler.idempotency;
+package es.vicfuen02.webhookHandler.requestHandler.outbox.service;
 
 
 import lombok.AllArgsConstructor;
@@ -11,12 +11,13 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class IdempotencyModel {
+public class OutboxModel {
+
 
     private Long id;
-    private Long idempotentId;
-    private String service;
-    private IdempotencyEnum status;
+    private Long outboxId;
+    private String payload;
+    private OutboxEventEnum status;
 
 
 

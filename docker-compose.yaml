@@ -11,8 +11,8 @@ services:
       MYSQL_DATABASE: webhookHandlerDB
     ports:
       - "3306:3306"
-    volumes:
-      - db-mysql-vol:/var/lib/mysql/data
+#    volumes:
+#      - db-mysql-vol:/var/lib/mysql/data
     networks:
       - webhook-handler-network
 
@@ -64,8 +64,8 @@ services:
 #    networks:
 #      - webhook-handler-network
 
-volumes:
-  db-mysql-vol:
+#volumes:
+#  db-mysql-vol:
 
 networks:
   webhook-handler-network:
