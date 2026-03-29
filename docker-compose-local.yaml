@@ -1,0 +1,73 @@
+services:
+
+
+  db-mysql:
+    image: mysql:8.4
+    container_name: webhook-handler-db-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: admin
+      MYSQL_USER: user
+      MYSQL_PASSWORD: pass
+      MYSQL_DATABASE: webhookHandlerDB
+    ports:
+      - "3306:3306"
+#    volumes:
+#      - db-mysql-vol:/var/lib/mysql/data
+    networks:
+      - webhook-handler-network
+
+
+  kafka1:
+    image: confluentinc/cp-kafka:7.7.8
+    container_name: webhook-handler-kafka-kafka1
+    environment:
+      KAFKA_ADVERTISED_HOST_NAME: webhook-handler-kafka-kafka1
+#      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://webhook-handler-kafka-kafka1:9092
+      KAFKA_KRAFT_MODE: 'true'
+      CLUSTER_ID: "Mk3OEYBSD34fcwNTJENDM2Qk"
+      KAFKA_NODE_ID: 1
+      KAFKA_PROCESS_ROLES: controller,broker
+      KAFKA_CONTROLLER_QUORUM_VOTERS: 1@localhost:9093  # node@url
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:9092,CONTROLLER://0.0.0.0:9093
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9092
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,CONTROLLER:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
+      KAFKA_CONTROLLER_LISTENER_NAMES: CONTROLLER
+      KAFKA_LOG_DIRS: /tmp/kafka-vol-logs
+      KAFKA_AUTO_CREATE_TOPICS_ENABLE: "true"
+      KAFKA_LOG_RETENTION_HOURS: 168
+      KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
+    ports:
+      - 9092:9092
+    volumes:
+      - kafka-vol:/var/lib/kafka/data
+    networks:
+      - webhook-handler-network
+
+#  backend:
+#    build:
+#      context: .
+#      dockerfile: Dockerfile
+#    container_name: webhook-handler-backend
+#    environment:
+#      ACTIVE_PROFILE: default
+#      MYSQL_USER: user
+#      MYSQL_PASSWORD: pass
+#      MYSQL_URL: jdbc:mysql://db-mysql:3306/webhookHandlerDB
+#      KAFKA_CONFIG_BOOTSTRAP_SERVERS: webhook-handler-kafka-kafka1:9092
+#    ports:
+#      - "8080:8080"
+#    depends_on:
+#      - db-mysql
+#      - kafka1
+#    networks:
+#      - webhook-handler-network
+
+volumes:
+  kafka-vol:
+#  db-mysql-vol:
+
+networks:
+  webhook-handler-network:
+    driver: bridge

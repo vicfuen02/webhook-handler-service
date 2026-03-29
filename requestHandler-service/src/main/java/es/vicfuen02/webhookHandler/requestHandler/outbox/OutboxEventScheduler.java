@@ -32,7 +32,7 @@ public class OutboxEventScheduler {
 
         log.info("OutboxEventScheduler running...");
         List<OutboxModel> events = outboxEventHelper.getPendingOutboxEvents();
-
+        log.info("OutboxEventScheduler events to process: {}", events.size());
         for (OutboxModel event: events) {
             WebHookEvent webhook = serializerHelper.deserialize(event.getPayload(), WebHookEvent.class);
             kafkaMessagePublisher.publishEvent("webhook-topic", webhook.getWebhookEventId(), webhook);
