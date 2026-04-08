@@ -12,7 +12,6 @@ import org.springframework.kafka.core.*;
 import org.springframework.kafka.listener.ConcurrentMessageListenerContainer;
 import org.springframework.kafka.listener.ContainerProperties;
 import org.springframework.kafka.support.serializer.JacksonJsonDeserializer;
-import org.springframework.kafka.support.serializer.JsonDeserializer;
 
 import java.io.Serializable;
 import java.util.HashMap;
@@ -36,6 +35,7 @@ public class KafkaConsumerConfig<K extends Serializable, V extends BaseEvent> {
         properties.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG,      kafkaConsumerDataConfig.getValueDeserializer());
         properties.put(ConsumerConfig.GROUP_ID_CONFIG ,                     kafkaConsumerDataConfig.getGroupId());
         properties.put(JacksonJsonDeserializer.TRUSTED_PACKAGES,            kafkaConsumerDataConfig.getTrustedPackages());
+        properties.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG ,            kafkaConsumerDataConfig.getAutoOffsetReset());
 
         return properties;
     }
@@ -50,7 +50,7 @@ public class KafkaConsumerConfig<K extends Serializable, V extends BaseEvent> {
         ConcurrentKafkaListenerContainerFactory<K, V> factory = new ConcurrentKafkaListenerContainerFactory<>();
         factory.setConsumerFactory(consumerFactory());
         factory.getContainerProperties().setAckMode(ContainerProperties.AckMode.MANUAL_IMMEDIATE); // ← manual ack
-
+        factory.setConcurrency(kafkaConsumerDataConfig.getListenerConcurrency());
         return factory;
     }
 

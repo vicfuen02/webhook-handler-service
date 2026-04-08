@@ -14,6 +14,9 @@ public class KafkaConsumerDataConfig {
     private String keyDeserializer;
     private String valueDeserializer;
     private String trustedPackages;
+    private String autoOffsetReset;
+    private Integer listenerConcurrency;
+
 
 
 }
