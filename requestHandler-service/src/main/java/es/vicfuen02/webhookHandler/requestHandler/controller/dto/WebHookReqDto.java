@@ -1,0 +1,20 @@
+package es.vicfuen02.webhookHandler.requestHandler.controller.dto;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.util.Date;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class WebHookReqDto {
+
+    private String eventId;
+    private String topic;
+    private String payload;
+    private Date receivedAt;
+
+
+}
